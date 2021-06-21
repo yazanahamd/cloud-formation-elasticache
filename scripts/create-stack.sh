@@ -2,10 +2,10 @@
 
 # creates a stack in AWS via CloudFromation
 
-STACKNAME=${1:-Weapon-X-Cache}
-PROJECTNAME=${2:-Weapon-X}
-VPC=${3:-vpc-3db4d95a}
-SUBNETS=${4:-subnet-f53ce2bc,subnet-77038710,subnet-b190a9e9}
+STACKNAME=${1:-redisTest}
+PROJECTNAME=${2:-redisTest}
+VPC=${3:-vpc-e7e0698c}
+SUBNETS=${4:-subnet-47fcab0b,subnet-c99627a2,subnet-4931de34}
 ENVIRONMENT=${5:-development}
 CREATOR=${6:-CloudFormation}
 TEMPLATELOCATION=${7:-file://$(pwd)/elasticache.yml}
@@ -16,6 +16,7 @@ $VALIDATE
 
 CREATE="aws cloudformation create-stack --stack-name $STACKNAME \
                                         --disable-rollback \
+                                        --region us-east-2 \
                                         --template-body $TEMPLATELOCATION \
                                         --capabilities CAPABILITY_NAMED_IAM \
                                         --parameters ParameterKey=Project,ParameterValue=$PROJECTNAME \

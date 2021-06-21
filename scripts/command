@@ -1,0 +1,13 @@
+aws cloudformation create-stack --stack-name redisTest \
+                                        --disable-rollback \
+                                        --region us-east-2 \
+                                        --template-body file://$(pwd)/elasticache.yml \
+                                        --capabilities CAPABILITY_NAMED_IAM \
+                                        --parameters ParameterKey=Project,ParameterValue=redisTest \
+                                                     ParameterKey=Environment,ParameterValue=development \
+                                                     ParameterKey=Creator,ParameterValue=cloudformation \
+                                                     ParameterKey=Subnets,ParameterValue=\"subnet-47fcab0b,subnet-c99627a2,subnet-4931de34\" \
+                                                     ParameterKey=VPC,ParameterValue=vpc-e7e0698c \
+                                        --tags Key=Project,Value=redisTest \
+                                               Key=Environment,Value=development \
+                                               Key=Creator,Value=cloudeformation
